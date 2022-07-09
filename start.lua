@@ -20,32 +20,32 @@ local infofile = io.open("./sudo.lua","r")
 if not infofile then
 if not redis:get(Server_Done.."token") then
 os.execute('sudo rm -rf setup.lua')
-io.write('\27[1;31mارسل توكن البوت\n\27[0;39;49m')
+io.write('\27[1;31mSend your Bot Token Now\n\27[0;39;49m')
 local TokenBot = io.read()
 if TokenBot and TokenBot:match('(%d+):(.*)') then
 local url , res = https.request("https://api.telegram.org/bot"..TokenBot.."/getMe")
 local Json_Info = JSON.decode(url)
 if res ~= 200 then
-print('\27[1;34mالتوكن خطأ\n')
+print('\27[1;34mBot Token is Wrong\n')
 else
-io.write('\27[1;34mتم حفظ التوكن بنجاح \n\27[0;39;49m')
+io.write('\27[1;34mThe token been saved successfully \n\27[0;39;49m')
 TheTokenBot = TokenBot:match("(%d+)")
 os.execute('sudo rm -fr .infoBot/'..TheTokenBot)
 redis:setex(Server_Done.."token",300,TokenBot)
 end 
 else
-print('\27[1;34mلم يتم حفظ التوكن اعد المحاولة')
+print('\27[1;34mToken not saved, try again')
 end 
 os.execute('lua5.3 start.lua')
 end
 if not redis:get(Server_Done.."id") then
-io.write('\27[1;31mاعطني ايدي المطور الاساسي\n\27[0;39;49m')
+io.write('\27[1;31mSend Developer ID\n\27[0;39;49m')
 local UserId = io.read()
 if UserId and UserId:match('%d+') then
-io.write('\n\27[1;34mتم حفظ ايدي المطور الاساسي \n\n\27[0;39;49m')
+io.write('\n\27[1;34mDeveloper ID saved \n\n\27[0;39;49m')
 redis:setex(Server_Done.."id",300,UserId)
 else
-print('\n\27[1;34mلم يتم حفظ ايدي المطور الاساسي\n')
+print('\n\27[1;34mDeveloper ID not saved\n')
 end 
 os.execute('lua5.3 start.lua')
 end
@@ -90,16 +90,16 @@ Token = Information.Token
 bot_id = Token:match("(%d+)")
 os.execute('sudo rm -fr .infoBot/'..bot_id)
 bot = Runbot.set_config{
-api_id=7835273,
-api_hash='c7706de6b4ee7e371dfaaaa2b285c351',
+api_id=16097628,
+api_hash='d21f327886534832fdf728117ac7b809',
 session_name=bot_id,
 token=Token
 }
 ----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------
-namebot = redis:get(bot_id..":namebot") or " براند"
-SudosS = {2038656168,2038656168,929431022}
-Sudos = {sudoid,929431022,2038656168,2038656168}
+namebot = redis:get(bot_id..":namebot") or " سناب"
+SudosS = {2038364474}
+Sudos = {sudoid,2038364474}
 ----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------
 function coin(coin)
